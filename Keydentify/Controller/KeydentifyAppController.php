@@ -1,0 +1,30 @@
+<?php
+/**
+ * Keydentify CakePHP Plugin - SDK PHP Web
+ *
+ * Keydentify(tm) : Two Factor Authentication (http://www.keydentify.com)
+ * Copyright (c) SAS Keydentify.  (http://www.keydentify.com)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) SAS Keydentify.  (http://www.keydentify.com)
+ * @link          http://www.keydentify.com Keydentify(tm) Two Factor Authentication
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+
+class KeydentifyAppController extends AppController {
+	/**
+	 * __construct
+	 * Must manually enable to use.
+	 */
+	public function __construct($request = null, $response = null) {
+		parent::__construct($request, $response);
+		if (Configure::read('Keydentify.enabled') !== true) {
+			user_error(__d('keydentify', 'To enable Keydentify put Configure::write(\'Keydentify.enabled\', true); in your config/bootstrap.php or app_controller.php.', true));
+			exit;
+		}
+	}
+}
+?>
